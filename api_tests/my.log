@@ -1,0 +1,52 @@
+Thu 11 Nov 2021 22:29:55 test_requests.py INFO {
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "session_list": [
+      {
+        "talker_id": 221062130,
+        "session_type": 2,
+        "at_seqno": 0,
+        "top_ts": 0,
+        "group_name": "\ud83d\udc8e\u5c0f\u67f4\u5e94\u63f4\u56e2",
+        "group_cover": "https://i1.hdslb.com/bfs/face/e8b140f6f1588cc4842ff752deca5d90d3d4fe93.jpg",
+        "is_follow": 0,
+        "is_dnd": 0,
+        "ack_seqno": 1321,
+        "ack_ts": 1614092873467566,
+        "session_ts": 1636267760842500,
+        "unread_count": 99,
+        "last_msg": {
+          "sender_uid": 0,
+          "receiver_type": 2,
+          "receiver_id": 221062130,
+          "msg_type": 306,
+          "content": "{\"group_id\":221062130,\"content\":\"\u6b22\u8fce\u679d\u6c5f\u78b3\u70e4\u7f8a\u9a7c\u554a\u55ef\u5165\u7fa4\"}",
+          "msg_seqno": 1420,
+          "timestamp": 1636267760,
+          "at_uids": null,
+          "msg_key": 7027716517273804876,
+          "msg_status": 0,
+          "notify_code": ""
+        },
+        "group_type": 0,
+        "can_fold": 0,
+        "status": 0,
+        "max_seqno": 1420,
+        "new_push_msg": 0,
+        "setting": 0,
+        "is_guardian": 0,
+        "is_intercept": 0,
+        "is_trust": 0,
+        "system_msg_type": 0,
+        "live_status": 0
+      }
+    ],
+    "has_more": 1,
+    "anti_disturb_cleaning": false,
+    "is_address_list_empty": 0,
+    "show_level": true
+  }
+}
