@@ -58,7 +58,8 @@ class TestUser:
                           data=data,
                           headers={"content-tyoe": "application/json;charset=UTF-8"}
                           ).json()
-        logging.debug(r)
+        logging.info(r)
+        # print(r)
         assert r["errcode"] == 0
 
     def test_list(self):
