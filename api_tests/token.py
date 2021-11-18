@@ -9,17 +9,25 @@ import yaml
 
 
 class Weixin:
-	logging.basicConfig(level=logging.DEBUG)
-	_token = ""
+    logging.basicConfig(level=logging.DEBUG)
+    _token = ""
 
-	@classmethod
-	def get_token(cls):
-		if len(cls._token) == 0:
-			conf = yaml.load(open("weixin.yaml"), Loader=yaml.FullLoader)
-			# logging.debug(conf["env"])
-			r = requests.get("https://qyapi.weixin.qq.com/cgi-bin/gettoken",
-							 params={"corpid": conf["env"]["corp_id"], "corpsecret": conf["env"]["secret"]}).json()
-			# print(r["access_token"])
-			cls._token = r["access_token"]
+    @classmethod
+    def get_token(cls):
+        if len(cls._token) == 0:
+            # conf = yaml.load(open("weixin.yaml"), Loader=yaml.FullLoader)
+            # # logging.debug(conf["env"])
+            # r = requests.get("https://qyapi.weixin.qq.com/cgi-bin/gettoken",
+            # 				 params={"corpid": conf["env"]["corp_id"], "corpsecret": conf["env"]["secret"]}).json()
+            # # print(r["access_token"])
+            cls._token = cls.get_new_token()
+        return cls._token
 
-		return cls._token
+    @classmethod
+    def get_new_token(cls):
+        conf = yaml.safe_load(open("weixin.yaml"))
+        logging.debug(conf["env"])
+
+        r = requests.get("https://qyapi.weixin.qq.com/cgi-bin/gettoken",
+                         params={"corpid": conf["env"]["corp_id"], "corpsecret": conf["env"]["secret"]}).json()
+        return r["access_token"]

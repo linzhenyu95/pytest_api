@@ -9,14 +9,11 @@ import logging
 import pytest
 import requests
 
-from api_tests.token import Weixin
-
 
 class TestDepartment:
     @classmethod
     def setup_class(cls):
         print("setup class")
-        Weixin.get_token()
 
     # print(Weixin._token)
     def setup(self):
@@ -30,7 +27,7 @@ class TestDepartment:
     # 	   "order": 1,
     # 	   "id": 2
     # 	}
-    def test_create_deth(self):
+    def test_create_deth(self, token):
         parentid = 1
         for i in range(5):
             data = {
@@ -39,7 +36,7 @@ class TestDepartment:
                 "parentid": parentid
             }
             r = requests.post("https://qyapi.weixin.qq.com/cgi-bin/department/create",
-                              params={"access_token": Weixin.get_token()},
+                              params={"access_token": token},
                               json=data,
                               # proxies={"http":"http://127.0.0.1:8080",
                               #           "https":"http://127.0.0.1:8080"},
@@ -49,7 +46,7 @@ class TestDepartment:
             parentid = r["id"]
             assert r["errcode"] == 0
 
-    def test_create_name(self):
+    def test_create_name(self, token):
         data = {
             "name": "上海研发中心",
             "parentid": 1,
@@ -57,13 +54,13 @@ class TestDepartment:
 
         }
         r = requests.post("https://qyapi.weixin.qq.com/cgi-bin/department/create",
-                          params={"access_token": Weixin.get_token()},
+                          params={"access_token": token},
                           json=data,
                           ).json()
         logging.debug(r)
 
     @pytest.mark.parametrize("name", ["いのー異能けんきゅー研究しょ所", "이력 연구소"])
-    def test_create_order(self, name):
+    def test_create_order(self, name, token):
         data = {
             "name": name,
             "parentid": 1,
@@ -71,14 +68,14 @@ class TestDepartment:
 
         }
         r = requests.post("https://qyapi.weixin.qq.com/cgi-bin/department/create",
-                          params={"access_token": Weixin.get_token()},
+                          params={"access_token": token},
                           json=data,
                           ).json()
         logging.debug(r)
         assert r["errcode"] == 0
 
-    def test_get(self):
+    def test_get(self, token):
         r = requests.get("https://qyapi.weixin.qq.com/cgi-bin/department/list",
-                         params={"access_token": Weixin.get_token()}).json()
+                         params={"access_token": token}).json()
         # logging.debug(r)
         logging.info(json.dumps(r, indent=2))
